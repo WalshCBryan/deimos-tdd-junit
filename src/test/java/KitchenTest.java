@@ -1,44 +1,47 @@
+import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class KitchenTest {
 
+    Kitchen emptyKitchen;
+    Kitchen kitchenWithOne;
+    Kitchen kitchenWithMany;
+
+    @Before
+    public void setup(){
+        emptyKitchen = new Kitchen();
+
+        kitchenWithOne = new Kitchen();
+        kitchenWithOne.add("yellow corn");
+
+        kitchenWithMany = new Kitchen();
+        kitchenWithMany.add("yellow corn");
+        kitchenWithMany.add("white corn");
+        kitchenWithMany.add("blue corn");
+        kitchenWithMany.add("red corn");
+    }
+
     @Test
     public void testIfItsEmpty(){
-        Kitchen fersKitchen = new Kitchen();
-        assertTrue(fersKitchen.isEmpty());
-
-        Kitchen sophiesKitchen = new Kitchen();
-        sophiesKitchen.add("blue corn");
-        assertEquals(1, sophiesKitchen.size());
-
+        assertTrue(emptyKitchen.isEmpty());
+        assertEquals(1, kitchenWithOne.size());
     }
 
     @Test
     public void testIfAddWorks(){
-        Kitchen sophiesKitchen = new Kitchen();
-
-        assertEquals(0, sophiesKitchen.size());
-
-        sophiesKitchen.add("Blue corn");
-        assertEquals(1, sophiesKitchen.size());
-
-        sophiesKitchen.add("Yellow corn");
-        sophiesKitchen.add("Yellow corn");
-        assertEquals(3, sophiesKitchen.size());
+        assertEquals(0, emptyKitchen.size());
+        assertEquals(1, kitchenWithOne.size());
+        assertEquals(4, kitchenWithMany.size());
     }
-
 
     @Test
     public void testIfContainsWorks(){
-        Kitchen fersKitchen = new Kitchen();
-        fersKitchen.add("white corn");
-        fersKitchen.add("white corn");
-        fersKitchen.add("yellow corn");
-        assertTrue(fersKitchen.contains("yellow corn"));
-        assertTrue(fersKitchen.contains("white corn"));
-        assertFalse(fersKitchen.contains("blue corn"));
+        assertTrue(kitchenWithMany.contains("yellow corn"));
+        assertTrue(kitchenWithMany.contains("white corn"));
+        assertTrue(kitchenWithMany.contains("blue corn"));
+        assertTrue(kitchenWithMany.contains("red corn"));
+        assertFalse(kitchenWithMany.contains("rainbow corn"));
     }
-
 
 }
