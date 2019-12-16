@@ -44,4 +44,15 @@ public class KitchenTest {
         assertFalse(kitchenWithMany.contains("rainbow corn"));
     }
 
+    @Test
+    public void testIfPopWorks(){
+        kitchenWithOne.pop();
+        assertEquals(0, kitchenWithOne.size());
+        kitchenWithMany.pop();
+        assertFalse(kitchenWithMany.contains("red corn"));
+        assertEquals(3, kitchenWithMany.size());
+        kitchenWithMany.pop();
+        assertFalse(kitchenWithMany.contains("blue corn"));
+    }
+
 }
